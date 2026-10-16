@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Betty | B.Tech IT student &amp; aspiring developer</title>
+<meta name="description" content="Hi, I'm Betty, a first-year B.Tech IT student learning to build things with code. Welcome to my terminal.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Betty | B.Tech IT student &amp; aspiring developer">
+<meta property="og:description" content="A first-year IT student's portfolio, built as a retro hacker console. Come say hi.">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#050a07">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%A9%E2%80%8D%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!--
+  EDIT ME: search this file for "EDIT" to find everything you should personalise
+  (skills, hobbies, fun facts, email, LinkedIn, GitHub, status line, role list).
+-->
+<style>
+:root{
+  --bg:#050a07; --panel:#09140d; --line:#1c4a2c; --g:#39ff7a; --dim:#3fae6a;
+  --amber:#ffb000; --txt:#c9f2d4; --mut:#7fae8c;
+  --head:'VT323','Courier New',monospace; --body:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+body{background:var(--bg);color:var(--txt);font:15px/1.7 var(--body);min-height:100vh;overflow-x:hidden;
+  background-image:radial-gradient(ellipse at 50% 0,#0c2415 0,transparent 60%)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px)}
+a{color:var(--g);text-underline-offset:3px}
+a:hover{color:var(--amber)}
+:focus-visible{outline:2px dashed var(--amber);outline-offset:3px}
+h1,h2,h3{font-family:var(--head);font-weight:400;line-height:1.05}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px}
+section{padding:54px 0 10px}
+.cmd{font-family:var(--head);font-size:clamp(26px,6vw,36px);color:var(--g);text-shadow:0 0 8px rgba(57,255,122,.5);margin-bottom:18px}
+.cmd::before{content:"$ ";color:var(--amber)}
+.win{border:1px solid var(--line);background:var(--panel);border-radius:6px;box-shadow:0 0 0 1px #000,0 0 24px rgba(57,255,122,.07)}
+.bar{display:flex;align-items:center;gap:6px;padding:7px 12px;border-bottom:1px solid var(--line);color:var(--mut);font-size:12px}
+.bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+.bar i:nth-child(1){background:#ff5f56}.bar i:nth-child(2){background:#ffbd2e}.bar i:nth-child(3){background:#27c93f}
+.bar span{margin-left:8px}
+.pad{padding:16px}
+.mut{color:var(--mut)}
+.amb{color:var(--amber)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(5,10,7,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:48px;gap:10px}
+nav b{font-family:var(--head);font-weight:400;font-size:22px;color:var(--g);white-space:nowrap}
+nav ul{list-style:none;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav a{display:block;padding:6px 8px;font-size:13px;color:var(--mut);text-decoration:none;white-space:nowrap}
+nav a:hover,nav a:focus-visible{color:var(--g)}
+
+/* boot */
+#boot{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .35s}
+#boot.off{opacity:0;pointer-events:none}
+#boot .log{color:var(--dim);font-size:13px;min-height:20px}
+#name{display:flex;font-family:var(--head);font-size:clamp(64px,22vw,140px);color:var(--g);text-shadow:0 0 18px var(--g);line-height:1}
+#name span{display:inline-block;opacity:0;transform:translateY(-120vh);animation:drop .45s cubic-bezier(.3,.9,.4,1.2) forwards}
+@keyframes drop{0%{opacity:1;transform:translateY(-120vh)}70%{opacity:1;transform:translateY(8px)}100%{opacity:1;transform:none}}
+#skip{position:absolute;right:14px;bottom:18px;background:none;border:1px solid var(--dim);color:var(--g);font:13px var(--body);padding:8px 14px;border-radius:4px;cursor:pointer}
+#skip:hover{background:var(--g);color:#000}
+
+/* hero */
+.hero{display:grid;gap:26px;padding-top:34px;align-items:center}
+.photo{position:relative;width:min(240px,70vw);aspect-ratio:1;margin:0 auto;border:1px solid var(--g);padding:8px;background:var(--panel);box-shadow:0 0 22px rgba(57,255,122,.25)}
+.photo::before,.photo::after{content:"";position:absolute;width:22px;height:22px;border:3px solid var(--amber)}
+.photo::before{top:-6px;left:-6px;border-right:0;border-bottom:0}
+.photo::after{bottom:-6px;right:-6px;border-left:0;border-top:0}
+.photo .in{width:100%;height:100%;overflow:hidden;position:relative;display:grid;place-items:center;background:#06150c}
+.photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05)}
+.photo .in::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(57,255,122,.12),transparent 40%,rgba(57,255,122,.1));mix-blend-mode:screen;pointer-events:none}
+.initials{width:75%;aspect-ratio:1;border-radius:50%;border:2px solid var(--g);display:grid;place-items:center;font:64px var(--head);color:var(--g);text-shadow:0 0 12px var(--g)}
+.hero h1{font-size:clamp(60px,17vw,112px);color:var(--g);text-shadow:0 0 16px rgba(57,255,122,.55)}
+.hello{color:var(--mut)}
+.tag{font-family:var(--head);font-size:clamp(24px,6vw,34px);min-height:1.3em;color:var(--txt);margin:6px 0}
+.tag em{font-style:normal;color:var(--amber)}
+.cur{display:inline-block;width:.55em;height:1em;background:var(--g);vertical-align:-.12em;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.status{color:var(--mut);font-size:14px;margin:6px 0 20px}
+.status b{color:var(--g);font-weight:500}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 20px;border:1px solid var(--g);color:var(--g);text-decoration:none;font:500 14px var(--body);border-radius:3px;transition:.15s}
+.btn:hover,.btn:focus-visible{background:var(--g);color:#000;box-shadow:0 0 16px var(--g)}
+.btn.alt{border-color:var(--amber);color:var(--amber)}
+.btn.alt:hover{background:var(--amber);color:#000;box-shadow:0 0 16px var(--amber)}
+
+/* about */
+.about p{margin-bottom:14px;max-width:66ch}
+.about p::before{content:"> ";color:var(--amber)}
+
+/* skills */
+.grid{display:grid;gap:12px}
+.skill{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);background:var(--panel);border-radius:4px}
+.skill b{font-weight:500}
+.lvl{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mut);white-space:nowrap}
+.pips{letter-spacing:2px;color:var(--g);font-size:16px}
+.pips s{text-decoration:none;color:var(--line)}
+.legend{margin-top:12px;font-size:13px;color:var(--mut)}
+
+/* journey */
+.log{list-style:none;border-left:2px solid var(--line);margin-left:8px}
+.log li{position:relative;padding:0 0 22px 22px}
+.log li::before{content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--g)}
+.log li.now::before{background:var(--g);box-shadow:0 0 10px var(--g);animation:blink 1.4s steps(1) infinite}
+.log li.next::before{border-style:dashed;border-color:var(--amber)}
+.log .hash{color:var(--amber);font-size:13px}
+.log h3{font-size:26px;color:var(--g);margin:2px 0}
+.log p{color:var(--txt);max-width:60ch;font-size:14px}
+
+/* beyond */
+.cards{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.card{border:1px solid var(--line);background:var(--panel);padding:14px;border-radius:4px;transition:.15s}
+.card:hover{border-color:var(--g);transform:translateY(-2px)}
+.card .e{font-size:28px;display:block}
+.card h3{font-size:24px;color:var(--g)}
+.card p{font-size:13px;color:var(--mut);line-height:1.5}
+.facts{margin-top:18px;list-style:none}
+.facts li{padding:6px 0;border-bottom:1px dashed var(--line)}
+.facts li::before{content:"fact++ ";color:var(--amber);font-size:12px}
+
+/* contact */
+.links{display:grid;gap:10px}
+.links a{display:flex;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);background:var(--panel);text-decoration:none;border-radius:4px;color:var(--txt)}
+.links a:hover,.links a:focus-visible{border-color:var(--g);color:var(--g);box-shadow:0 0 14px rgba(57,255,122,.25)}
+.links span{color:var(--mut)}
+footer{padding:40px 0 60px;text-align:center;color:var(--mut);font-size:13px}
+#prompt{cursor:pointer;background:none;border:0;color:var(--g);font:inherit}
+
+/* easter egg */
+#egg{position:fixed;inset:0;z-index:90;background:#000;display:none;align-items:center;justify-content:center}
+#egg.on{display:flex}
+#egg canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
+#egg .msg{position:relative;text-align:center;padding:24px;background:rgba(0,0,0,.85);border:1px solid var(--g);max-width:min(440px,90vw)}
+#egg h2{font-size:42px;color:var(--g);margin-bottom:8px}
+#egg button{margin-top:14px;background:none;border:1px solid var(--amber);color:var(--amber);padding:8px 16px;font:14px var(--body);cursor:pointer}
+
+@media(min-width:700px){
+  body{font-size:16px}
+  .hero{grid-template-columns:260px 1fr;gap:44px}
+  .photo{margin:0}
+  .cards{grid-template-columns:repeat(4,1fr)}
+  .links{grid-template-columns:repeat(3,1fr)}
+  .links a{flex-direction:column;gap:4px}
+  nav a{padding:6px 12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  #name span{opacity:1;transform:none}
+  .cur{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- OPENING: name letters drop in one by one (under 2.5s, plays once, skippable) -->
+<div id="boot" role="dialog" aria-label="Intro">
+  <div class="log" id="log">booting betty.os ...</div>
+  <div id="name" aria-label="Betty"></div>
+  <button id="skip">Skip intro</button>
+</div>
+
+<nav>
+  <div class="wrap">
+    <b>betty@portfolio:~$</b>
+    <ul>
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#journey">journey</a></li>
+      <li><a href="#beyond">beyond</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="photo">
+      <div class="in" id="photoBox">
+        <img id="pic" src="me.jpg" alt="Portrait of Betty">
+      </div>
+    </div>
+    <div>
+      <p class="hello">&gt; whoami</p>
+      <h1>Betty</h1>
+      <!-- SIGNATURE MOVE: typing tagline that cycles through my roles -->
+      <p class="tag" aria-live="off">I am a <em id="role"></em><span class="cur" aria-hidden="true"></span></p>
+      <!-- EDIT: your "currently" line -->
+      <p class="status">currently: <b>learning the basics of programming</b> and building this site</p>
+      <div class="btns">
+        <a class="btn" href="#about">Explore</a>
+        <a class="btn alt" href="#contact">Say hi</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="cmd">cat about.txt</h2>
+    <div class="win">
+      <div class="bar"><i></i><i></i><i></i><span>about.txt</span></div>
+      <div class="pad about">
+        <!-- EDIT: replace with your own story from your Me-Map answers -->
+        <p>Hi, I'm Betty! I'm a first-year B.Tech student in Information Technology, and everything about this field is still brand new and exciting to me.</p>
+        <p>I'm at the start of my journey: I'm learning how code turns an idea into something people can actually use, and I'm trying to get a little better every week.</p>
+        <p>I made this site to show who I am right now, not who I'll be in four years. Watch this space, because it's going to grow with me.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="cmd">./skills --honest</h2>
+    <div class="grid">
+      <!-- EDIT: change names and levels. Levels: Just starting / Learning / Comfortable -->
+      <div class="skill"><b>HTML &amp; CSS</b><span class="lvl"><span class="pips">■■<s>■</s></span>Comfortable</span></div>
+      <div class="skill"><b>Python</b><span class="lvl"><span class="pips">■<s>■■</s></span>Learning</span></div>
+      <div class="skill"><b>C programming</b><span class="lvl"><span class="pips">■<s>■■</s></span>Learning</span></div>
+      <div class="skill"><b>JavaScript</b><span class="lvl"><span class="pips"><s>■■■</s></span>Just starting</span></div>
+      <div class="skill"><b>Git &amp; GitHub</b><span class="lvl"><span class="pips"><s>■■■</s></span>Just starting</span></div>
+    </div>
+    <p class="legend">No fake percentages here. ■ = how far along I honestly feel. (Placeholder levels: edit them to match you!)</p>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey">
+    <h2 class="cmd">git log --journey</h2>
+    <ol class="log">
+      <li>
+        <span class="hash">commit 001 &middot; made</span>
+        <h3>Started B.Tech in IT</h3>
+        <p>Began my first year of Information Technology and my first real steps into computing.</p>
+      </li>
+      <li>
+        <span class="hash">commit 002 &middot; made</span>
+        <h3>Built this portfolio</h3>
+        <p>My first website: a retro hacker console about me. Built with HTML, CSS and JavaScript.</p>
+      </li>
+      <li class="now">
+        <span class="hash">HEAD &middot; learning now</span>
+        <h3>Programming fundamentals</h3>
+        <p>Getting comfortable with the basics: logic, syntax and debugging my own mistakes. <!-- EDIT --></p>
+      </li>
+      <li class="next">
+        <span class="hash">next &middot; want to build</span>
+        <h3>My first real project</h3>
+        <p>Something small but useful that I design and finish myself. <!-- EDIT: say what you want to build --></p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- BEYOND CODE -->
+  <section id="beyond">
+    <h2 class="cmd">ls ~/beyond-code/</h2>
+    <!-- EDIT: swap these hobbies for your real ones -->
+    <div class="cards">
+      <div class="card"><span class="e">🎧</span><h3>Music</h3><p>Add what you listen to.</p></div>
+      <div class="card"><span class="e">📚</span><h3>Reading</h3><p>Add a favourite book or genre.</p></div>
+      <div class="card"><span class="e">🎮</span><h3>Games</h3><p>Add a game you love.</p></div>
+      <div class="card"><span class="e">🍜</span><h3>Food</h3><p>Add a food you can't resist.</p></div>
+    </div>
+    <ul class="facts">
+      <!-- EDIT: replace with real fun facts -->
+      <li>I'm a first-year student who loves learning new things.</li>
+      <li>Add a surprising fact about yourself here.</li>
+      <li>Add another fun fact here.</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="cmd">ping betty</h2>
+    <p class="mut" style="margin-bottom:14px">Got advice, an idea, or just want to say hi? I'd love to hear from you.</p>
+    <div class="links">
+      <!-- EDIT: put your real email, LinkedIn and GitHub URLs -->
+      <a href="mailto:your.email@example.com">Email <span>your.email@example.com</span></a>
+      <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener">LinkedIn <span>/in/your-username</span></a>
+      <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub <span>@your-username</span></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <button id="prompt" aria-label="Secret prompt">betty@portfolio:~$</button><span class="cur" aria-hidden="true"></span>
+  <p style="margin-top:8px">built by Betty, first-year IT &middot; psst... try typing <span class="amb">hack</span> or tap the prompt 3 times</p>
+</footer>
+
+<!-- EASTER EGG -->
+<div id="egg" role="dialog" aria-label="Secret message">
+  <canvas id="rain"></canvas>
+  <div class="msg">
+    <h2>ACCESS GRANTED</h2>
+    <p>You found the secret! Thanks for really exploring my site. You're officially my favourite visitor. 💚</p>
+    <button id="close">exit()</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(id){return document.getElementById(id)};
+
+  /* ---------- Opening ---------- */
+  var boot = $('boot'), nameEl = $('name'), done = false;
+  'BETTY'.split('').forEach(function(ch,i){
+    var s = document.createElement('span');
+    s.textContent = ch; s.style.animationDelay = (0.35 + i*0.2) + 's';
+    nameEl.appendChild(s);
+  });
+  function endBoot(){
+    if(done) return; done = true;
+    boot.classList.add('off');
+    setTimeout(function(){boot.style.display='none'}, 400);
+  }
+  $('skip').addEventListener('click', endBoot);
+  setTimeout(function(){ $('log').textContent = 'booting betty.os ... ok'; }, 300);
+  setTimeout(endBoot, reduce ? 500 : 2200);
+
+  /* ---------- Photo fallback: me.jpg > me.jpeg > me.png > initials ---------- */
+  var pic = $('pic'), tries = ['me.jpeg','me.png'], k = 0;
+  pic.onerror = function(){
+    if(k < tries.length){ pic.src = tries[k++]; }
+    else{
+      pic.onerror = null; pic.remove();
+      var d = document.createElement('div');
+      d.className = 'initials'; d.textContent = 'B';
+      d.setAttribute('role','img'); d.setAttribute('aria-label','Betty\'s initials');
+      $('photoBox').appendChild(d);
+    }
+  };
+
+  /* ---------- Signature move: typing tagline cycling roles ---------- */
+  // EDIT: put your own roles here
+  var roles = ['first-year IT student','curious problem-solver','beginner coder','future software builder','lifelong learner'];
+  var el = $('role'), ri = 0, ci = 0, del = false;
+  if(reduce){
+    el.textContent = roles[0];
+    setInterval(function(){ ri = (ri+1)%roles.length; el.textContent = roles[ri]; }, 2800);
+  } else {
+    (function tick(){
+      var w = roles[ri], wait = del ? 35 : 75;
+      ci += del ? -1 : 1;
+      el.textContent = w.slice(0, ci);
+      if(!del && ci === w.length){ del = true; wait = 1400; }
+      else if(del && ci === 0){ del = false; ri = (ri+1)%roles.length; wait = 350; }
+      setTimeout(tick, wait);
+    })();
+  }
+
+  /* ---------- Easter egg: type "hack" or tap the prompt 3 times ---------- */
+  var egg = $('egg'), cv = $('rain'), ctx = cv.getContext('2d'), raf, buf = '', taps = 0, tapT;
+  function rain(){
+    cv.width = innerWidth; cv.height = innerHeight;
+    var cols = Math.floor(cv.width/16), drops = [];
+    for(var i=0;i<cols;i++) drops[i] = Math.random()*-40;
+    (function draw(){
+      ctx.fillStyle = 'rgba(0,0,0,.12)'; ctx.fillRect(0,0,cv.width,cv.height);
+      ctx.fillStyle = '#39ff7a'; ctx.font = '16px monospace';
+      for(var i=0;i<cols;i++){
+        ctx.fillText(String.fromCharCode(0x30A0 + Math.random()*96), i*16, drops[i]*16);
+        if(drops[i]*16 > cv.height && Math.random() > .975) drops[i] = 0;
+        drops[i]++;
+      }
+      raf = requestAnimationFrame(draw);
+    })();
+  }
+  function open(){
+    egg.classList.add('on');
+    if(!reduce) rain();
+    $('close').focus();
+  }
+  function close(){ egg.classList.remove('on'); cancelAnimationFrame(raf); }
+  $('close').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') return close();
+    if(e.key.length !== 1) return;
+    buf = (buf + e.key.toLowerCase()).slice(-4);
+    if(buf === 'hack') open();
+  });
+  $('prompt').addEventListener('click', function(){
+    taps++; clearTimeout(tapT);
+    tapT = setTimeout(function(){taps = 0}, 900);
+    if(taps >= 3){ taps = 0; open(); }
+  });
+})();
+</script>
+</body>
+</html>
